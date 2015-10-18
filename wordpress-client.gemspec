@@ -2,11 +2,11 @@ $:.push File.expand_path("../lib", __FILE__)
 require "wordpress/version"
 
 Gem::Specification.new do |s|
-  s.name        = "wordpress-client"
+  s.name        = "ct_wordpress-client"
   s.version     = Wordpress::Version
-  s.authors     = ["Daisuke Taniwaki"]
-  s.email       = ["daisuketaniwaki@gmail.com"]
-  s.homepage    = "https://github.com/dtaniwaki/wordpress-client"
+  s.authors     = [" "]
+  s.email       = [" "]
+  s.homepage    = "https://github.com/coupontom/wordpress-client"
   s.summary     = 'Wordpress API Wrapper.'
   s.description = 'Wordpress API Wrapper.'
 

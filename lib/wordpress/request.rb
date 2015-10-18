@@ -8,8 +8,13 @@ module Wordpress
     def initialize(method, url, params = {}, body = {})
       @method = method
       @url = URI.join(end_point, url).to_s
-      @params = params.dup
-      @body = body.dup
+      if params
+        @params = params.dup
+      end
+
+      if body
+        @body = body.dup
+      end
     end
 
     def initialize_copy(other)

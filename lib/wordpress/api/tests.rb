@@ -4,14 +4,14 @@ module Wordpress::API
   module Tests
     def get_test(id, params = {})
       validate_keys! params, test_keys
-      exec_api(Wordpress::Request.new(:get, "/rest/v1/test/#{id}", params)) do |json|
+      exec_api(Wordpress::Request.new(:get, "/rest/v1.1/test/#{id}", params)) do |json|
         Wordpress::Object::Test.new(self, json)
       end
     end
 
     def post_test(id, data, params = {})
       validate_keys! params, test_keys
-      exec_api(Wordpress::Request.new(:post, "/rest/v1/test/#{id}", params, data)) do |json|
+      exec_api(Wordpress::Request.new(:post, "/rest/v1.1/test/#{id}", params, data)) do |json|
         Wordpress::Object::Test.new(self, json)
       end
     end

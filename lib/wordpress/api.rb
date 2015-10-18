@@ -19,6 +19,8 @@ module Wordpress
         include Taxonomy
         include Notifications
         include FreshlyPressed
+        include Oauth
+        include Media
       end
     end
 

@@ -16,6 +16,7 @@ module Wordpress
     def initialize
       @conn = Faraday.new do |faraday|
         faraday.use Faraday::Response::Logger, logger
+        faraday.request :multipart
         faraday.request :url_encoded
         faraday.response :gzip
         faraday.adapter Faraday.default_adapter
@@ -26,14 +27,20 @@ module Wordpress
       debug "Request: #{request.inspect}"
 
       response = @conn.send(request.method) do |req|
-        req.url request.url
-        req.params = request.params
-        req.body = MultiJson.dump(request.body)
+
+        case req.method
+          when :delete, :get
+            req.url(request.url, request.params)
+          when :put, :post
+            req.path = request.url
+            req.body = request.body unless request.body.empty?
+        end
+
+
         if options[:bearer_token_request] && !bearer_auth_header.nil?
           req.headers['Authorization'] = bearer_auth_header
         end
         req.headers['Accept-Encoding'] = 'gzip,deflate'
-        req.headers['Content-Type'] = 'application/json'
         req.options[:timeout] = 10
         req.options[:open_timeout] = 5
       end
