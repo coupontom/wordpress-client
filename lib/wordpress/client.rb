@@ -18,7 +18,7 @@ module Wordpress
         faraday.use Faraday::Response::Logger, logger
         faraday.request :multipart
         faraday.request :url_encoded
-        faraday.response :gzip
+        #faraday.response :gzip
         faraday.adapter Faraday.default_adapter
       end
     end
@@ -40,7 +40,7 @@ module Wordpress
         if options[:bearer_token_request] && !bearer_auth_header.nil?
           req.headers['Authorization'] = bearer_auth_header
         end
-        req.headers['Accept-Encoding'] = 'gzip,deflate'
+        #req.headers['Accept-Encoding'] = 'gzip,deflate'
         req.options[:timeout] = 10
         req.options[:open_timeout] = 5
       end
